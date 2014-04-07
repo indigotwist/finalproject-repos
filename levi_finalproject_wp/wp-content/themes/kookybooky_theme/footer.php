@@ -8,15 +8,25 @@
  */
 ?>
 
-	</div><!-- #content -->
+		</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'kookybooky_theme' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'kookybooky_theme' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'kookybooky_theme' ), 'kookybooky_theme', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<nav class="social-media-footer-navigation">
+				<?php echo wen_social_links(); ?>
+			</nav>
+
+			<div class="site-info">
+				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'kookybooky_theme' ) ); ?>"><?php printf( __( 'Built with %s', 'kookybooky_theme' ), 'WordPress' ); ?></a>
+				<a href="http://www.deepindigodesign.com">by Levi Stephen</a>
+				<span class="copyright">&copy; <?php echo date('Y'); ?></span>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</section><!-- .wrapper -->
+
+	<section class="footer-bg">
+		<div class="footer-green-bar"></div>
+		<div class="footer-checkered-rule"></div>
+	</section>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

@@ -61,6 +61,9 @@ function kookybooky_theme_setup() {
 		'comment-form',
 		'gallery',
 	) );
+
+	// Enable support for Post Thumbnails (or Featured Image).
+	add_theme_support( 'post-thumbnails' );
 }
 endif; // kookybooky_theme_setup
 add_action( 'after_setup_theme', 'kookybooky_theme_setup' );
@@ -86,6 +89,10 @@ add_action( 'widgets_init', 'kookybooky_theme_widgets_init' );
 function kookybooky_theme_scripts() {
 	wp_enqueue_style( 'kookybooky_theme-style', get_stylesheet_uri() );
 
+	wp_enqueue_style( 'flexslider_style', get_template_directory_uri() . 'flexslider.css');
+
+	wp_enqueue_script( 'flexslider', get_template_directory_uri() . 'js/jquery.flexslider-min.js', array( 'jquery' ), true );
+
 	wp_enqueue_script( 'kookybooky_theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'kookybooky_theme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -95,6 +102,53 @@ function kookybooky_theme_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'kookybooky_theme_scripts' );
+
+/**
+ * Web font styles.
+ */
+function load_fonts() {
+            wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Josefin+Slab:400,700|Lobster+Two|Open+Sans:400italic,700italic,400');
+            wp_enqueue_style( 'googleFonts');
+        }
+
+    add_action('wp_print_styles', 'load_fonts');
+
+/**
+ * Custom Post Types for this theme.
+ */
+add_action( 'init', 'create_my_post_types' );
+
+function create_my_post_types() {
+ register_post_type( 'recipe',
+ array(
+      'labels' => array(
+      	'name' => __( 'Recipes' ),
+      	'singular_name' => __( 'Recipe' ),
+      	'add_new' => __( 'Add New' ),
+      	'add_new_item' => __( 'Add New Recipe' ),
+      	'edit' => __( 'Edit' ),
+      	'edit_item' => __( 'Edit Recipe' ),
+      	'new_item' => __( 'New Recipe' ),
+      	'view' => __( 'View Recipe' ),
+      	'view_item' => __( 'View Recipe' ),
+      	'search_items' => __( 'Search Recipes' ),
+      	'not_found' => __( 'No Recipes found' ),
+      	'not_found_in_trash' => __( 'No Recipes found in Trash' ),
+      	'parent' => __( 'Parent Recipe' ),
+      ),
+ 'public' => true,
+      'menu_position' => 4,
+      'rewrite' => array('slug' => 'recipes'),
+      'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments' ),
+      'taxonomies' => array('category', 'post_tag'),
+      'publicly_queryable' => true,
+      'show_ui' => true,
+      'query_var' => true,
+      'capability_type' => 'post',
+      'hierarchical' => false,
+     )
+  );
+}
 
 /**
  * Implement the Custom Header feature.
