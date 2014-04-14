@@ -43,6 +43,9 @@ and Blueprint http://www.blueprintcss.org/
 11.0 - Infinite scroll
 12.0 - Media
 13.0 - Custom Misc Styles
+	13.1 - Header section
+	13.2 - Content section
+	13.3 - Footer section
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -240,7 +243,8 @@ h1,
 	text-transform: uppercase;
 }
 
-.recipe-header h1 {
+.recipe-header h1,
+.home-content h1 {
 	font: 700 2.5em 'Josefin Slab', serif;
 	color: #105b63;
 }
@@ -853,6 +857,19 @@ object {
 .recipe-header,
 .home-content h1 {
 	margin-top: 75px;
+}
+
+.body-copy p {
+	width: 288px;
+	float: left;
+}
+
+.body-copy {
+	margin-top: 10px;
+}
+
+.body-copy p:first-of-type {
+	margin-right: 20px;
 }
 
 .recipe-header p {
