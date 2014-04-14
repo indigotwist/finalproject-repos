@@ -7,55 +7,53 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<article class="recipe">
-				<!--Ingredients - Repeater field group-->
-				<section class="ingredients">
-					<header>
-						<h1>Ingredients</h1>
-					</header>
-
-					<ul><?php
-
-					// check if the repeater field has rows of data
-					if( have_rows('ingredients') ):
-
-					 	// loop through the rows of data
-					    while ( have_rows('ingredients') ) : the_row(); ?>
-
-								<li><?php
-									the_sub_field('quantity'); ?>&nbsp;<?php
-
-									the_sub_field('qty_fraction'); ?>&nbsp;<?php
-
-									the_sub_field('measurement'); ?>&nbsp;<?php
-
-									the_sub_field('item'); ?>
-							    </li>
-
-					    <?php endwhile;
-
-					else :
-
-					    // no rows found
-
-					endif; ?>
-					</ul>
-				</section><!--end .ingredients-->
-
+			<!--Ingredients - Repeater field group-->
+			<section class="ingredients col-xs-4">
 				<header>
+					<h1>Ingredients</h1>
+				</header>
+
+				<ul class="list-unstyled"><?php
+
+				// check if the repeater field has rows of data
+				if( have_rows('ingredients') ):
+
+				 	// loop through the rows of data
+				    while ( have_rows('ingredients') ) : the_row(); ?>
+
+							<li><?php
+								the_sub_field('quantity'); ?>&nbsp;<?php
+
+								the_sub_field('qty_fraction'); ?>&nbsp;<?php
+
+								the_sub_field('measurement'); ?>&nbsp;<?php
+
+								the_sub_field('item'); ?>
+						    </li>
+
+				    <?php endwhile;
+
+				else :
+
+				    // no rows found
+
+				endif; ?>
+				</ul>
+			</section><!--end .ingredients-->
+
+			<article class="recipe col-xs-8">
+				<section class="recipe-header">
 					<!--Recipe Name - Title field-->
 					<?php the_title( '<h1>', '</h1>' ); ?>
 
 					<!--Recipe Description - Textarea-->
 					<?php the_field('recipe_description'); ?>
-				</header>
+				</section>
 
 				<section class="share-menu">
-					<a href="#0">Print</a>
+					<p class="pull-left"><a href="#0">Print</a> or Share This Recipe: </p>
 
-					<p> or Share This Recipe: </p>
-
-					<ul class="share-icons">
+					<ul class="share-icons list-inline">
 						<li><a href="#0"><img src="<?php echo get_site_url(); ?>/wp-content/uploads/2014/04/email-variation.png" alt="email"></a></li>
 						<li><a href="#0"><img src="<?php echo get_site_url(); ?>/wp-content/uploads/2014/04/pinterest.png" alt="pinterest"></a></li>
 						<li><a href="#0"><img src="<?php echo get_site_url(); ?>/wp-content/uploads/2014/04/facebook-variation.png" alt="facebook"></a></li>
@@ -69,28 +67,11 @@ get_header(); ?>
 				<?php $images = get_field('recipe_gallery');
 
 				if( $images ): ?>
-				    <div id="slider" class="flexslider">
-				        <ul class="slides">
-				            <?php foreach( $images as $image ): ?>
-				                <li>
-				                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-				                    <p><?php echo $image['caption']; ?></p>
-				                </li>
-				            <?php endforeach; ?>
-				        </ul>
-				    </div>
-				    <?php
-
-				    /*
-				    *  The following code creates the thumbnail navigation
-				    */
-
-				    ?>
 				    <div id="carousel" class="flexslider">
 				        <ul class="slides">
 				            <?php foreach( $images as $image ): ?>
-				                <li>
-				                    <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+				                <li data-thumb="<?php echo $image['sizes']['thumbnail']; ?>">
+				                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
 				                </li>
 				            <?php endforeach; ?>
 				        </ul>
@@ -101,11 +82,11 @@ get_header(); ?>
 
 				<section class="recipe-info">
 					<!--Yield Amount - Text field-->
-					<h1>Yield:</h1>
+					<h1>Yield</h1>
 					<p><?php the_field('yield_amount'); ?></p>
 
 					<!--Prep Time - Text field-->
-					<h1>Prep Time:</h1>
+					<h1>Prep Time</h1>
 					<p><?php
 
 					// check if the repeater field has rows of data
@@ -130,7 +111,7 @@ get_header(); ?>
 					?></p>
 
 					<!--Cook Time - Text field-->
-					<h1>Cook Time:</h1>
+					<h1>Cook Time</h1>
 					<p><?php
 
 					// check if the repeater field has rows of data
@@ -187,7 +168,7 @@ get_header(); ?>
 			</article><!--end .recipe-->
 
 			<!--Related Recipes - Post type field-->
-			<section class="related-recipes">
+			<section class="related-recipes col-xs-12">
 				<header>
 					<h1>Related Recipes</h1>
 				</header>

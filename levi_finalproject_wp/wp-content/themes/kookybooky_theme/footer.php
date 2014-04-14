@@ -8,25 +8,22 @@
  */
 ?>
 
-		</div><!-- #content -->
+	</section><!-- #content -->
 
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<nav class="social-media-footer-navigation">
+	<section id="footer-bg">
+		<footer id="colophon" class="site-footer container" role="contentinfo">
+			<nav class="social-media-footer-navigation col-xs-4">
 				<?php echo wen_social_links(); ?>
 			</nav>
 
-			<div class="site-info">
+			<div class="site-info col-xs-8 text-right">
+				<a href="#">Back to Top</a><span class="seperator">&nbsp;&#124;</span>
 				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'kookybooky_theme' ) ); ?>"><?php printf( __( 'Built with %s', 'kookybooky_theme' ), 'WordPress' ); ?></a>
 				<a href="http://www.deepindigodesign.com">by Levi Stephen</a>
 				<span class="copyright">&copy; <?php echo date('Y'); ?></span>
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
-	</section><!-- .wrapper -->
-
-	<section class="footer-bg">
-		<div class="footer-green-bar"></div>
-		<div class="footer-checkered-rule"></div>
-	</section>
+	</section><!-- #footer-bg -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

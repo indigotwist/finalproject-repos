@@ -19,9 +19,10 @@
 
 <script type="text/javascript" charset="utf-8">
 	jQuery(document).ready(function($) {
-    	$(window).load(function() {
-    	$('.flexslider').flexslider();
-  		});
+    	$('.flexslider').flexslider({
+	    animation: "slide",
+	    controlNav: "thumbnails"
+	  });
 	});
 </script>
 
@@ -29,36 +30,38 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<section class="header-bg">
-		<div class="header-green-bar"></div>
-		<div class="header-checkered-rule"></div>
+
+	<section id="header-bg">
+		<header id="masthead" class="site-header container" role="banner">
+			<div class="site-branding col-xs-3 col-xs-offset-1">
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			</div>
+
+			<div class="header-content col-xs-8 col-xs-offset-4">
+				<div class="row">
+					<h2 class="site-description col-xs-8"><?php bloginfo( 'description' ); ?></h2>
+
+					<aside id="search" class="widget widget_search col-xs-4">
+						<?php get_search_form(); ?>
+					</aside>
+
+					<button class="add-recipe-button col-xs-offset-8 col-xs-4">
+						<a href="<?php echo wp_login_url( admin_url() ); ?>" title="Login">Add New Recipe</a>
+					</button>
+
+					<nav id="site-navigation" class="main-navigation col-xs-12" role="navigation">
+						<h1 class="menu-toggle"><?php _e( 'Menu', 'kookybooky_theme' ); ?></h1>
+						<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'kookybooky_theme' ); ?></a>
+
+						<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+					</nav><!-- #site-navigation --></div>
+				</div>
+			</div>
+		</header><!-- #masthead -->
+
 		<div class="header-slideshow">
 			<div class="photo-slides"></div>
 		</div>
-	</section>
+	</section><!-- #header-bg -->
 
-	<section id="wrapper">
-
-		<header id="masthead" class="site-header" role="banner">
-			<div class="site-branding">
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</div>
-
-			<aside id="search" class="widget widget_search">
-				<?php get_search_form(); ?>
-			</aside>
-
-			<div class="add-recipe-button">
-				<a href="<?php echo wp_login_url( admin_url() ); ?>" title="Login">Add New Recipe</a>
-			</div>
-
-			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<h1 class="menu-toggle"><?php _e( 'Menu', 'kookybooky_theme' ); ?></h1>
-				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'kookybooky_theme' ); ?></a>
-
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</nav><!-- #site-navigation -->
-		</header><!-- #masthead -->
-
-		<div id="content" class="site-content">
+	<section id="content" class="site-content container">
