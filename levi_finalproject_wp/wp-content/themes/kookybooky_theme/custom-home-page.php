@@ -28,10 +28,18 @@ get_header(); ?>
 				endif; ?>
 			</div>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php if ( kookybooky_get_featured_posts(1) ) : ?>
+			    <div id="featured">
 
+			        <h2><?php _e( 'Featured Content', 'kookybooky' ); ?></h2>
 
-			<?php endwhile; // end of the loop. ?>
+			        <?php foreach ( $featured as $post ) : setup_postdata( $post ); ?>
+
+			            <?php get_template_part( 'featured', get_post_format() ); ?>
+
+			        <?php endforeach; ?>
+			    </div>
+			<?php endif; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

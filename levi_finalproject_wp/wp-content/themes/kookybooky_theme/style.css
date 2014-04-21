@@ -431,17 +431,23 @@ a:active {
 	color: #ffd34e;
 }
 
-.main-navigation .sub-menu a,
-.main-navigation .sub-menu a:visited {
-	color: #2e2e2e;
-}
-
 .main-navigation a:hover,
 .main-navigation a:focus,
 .main-navigation a:active,
 .site-footer a:hover,
 .site-footer a:focus,
 .site-footer a:active {
+	color: #fff;
+}
+
+.main-navigation .sub-menu a,
+.main-navigation .sub-menu a:visited {
+	color: #2e2e2e;
+}
+
+.main-navigation .sub-menu a:hover,
+.main-navigation .sub-menu a:focus,
+.main-navigation .sub-menu a:active {
 	color: #fff;
 }
 
@@ -824,6 +830,7 @@ object {
 }
 
 .header-slideshow {
+	margin-bottom: 75px;
   position: relative;
   overflow: hidden;
   height: 163px;
@@ -854,11 +861,6 @@ object {
 /*--------------------------------------------------------------
 13.2 Content section
 --------------------------------------------------------------*/
-.recipe-header,
-.home-content h1 {
-	margin-top: 75px;
-}
-
 .body-copy p {
 	width: 288px;
 	float: left;

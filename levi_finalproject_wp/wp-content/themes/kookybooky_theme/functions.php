@@ -64,6 +64,16 @@ function kookybooky_theme_setup() {
 
 	// Enable support for Post Thumbnails (or Featured Image).
 	add_theme_support( 'post-thumbnails' );
+
+	// Additional image size for featured image thumbnails.
+	add_image_size( 'kookybooky-featured-thumb', 220, 240, true );
+
+	//Enable theme support for featured posts.
+	add_theme_support( 'featured-content', array(
+    'filter'     => 'kookybooky_get_featured_posts',
+    'max_posts'  => 4,
+    'post_types' => array( 'post', 'page', 'recipes' ),
+	) );
 }
 endif; // kookybooky_theme_setup
 add_action( 'after_setup_theme', 'kookybooky_theme_setup' );
@@ -82,6 +92,32 @@ function kookybooky_theme_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'kookybooky_theme_widgets_init' );
+
+/**
+ * Returns the value of the filter defined in add_theme_support( 'featured-content' ).
+ */
+function kookybooky_get_featured_posts() {
+    return apply_filters( 'kookybooky_get_featured_posts', array() );
+}
+
+/**
+ *  Returns a Boolean value and accept a single parameter. The parameter is used to declare the minimum number of featured posts required to return a true value.
+ */
+function kookybooky_has_featured_posts( $minimum = 1 ) {
+    if ( is_paged() )
+        return false;
+
+    $minimum = absint( $minimum );
+    $featured_posts = apply_filters( 'kookybooky_get_featured_posts', array() );
+
+    if ( ! is_array( $featured_posts ) )
+        return false;
+
+    if ( $minimum > count( $featured_posts ) )
+        return false;
+
+    return true;
+}
 
 /**
  * Enqueue scripts and styles.
