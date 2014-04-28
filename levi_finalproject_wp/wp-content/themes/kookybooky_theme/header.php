@@ -53,7 +53,16 @@
 						<h1 class="menu-toggle"><?php _e( 'Menu', 'kookybooky_theme' ); ?></h1>
 						<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'kookybooky_theme' ); ?></a>
 
-						<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+						<?php
+
+						$backup_query = $wp_query;
+						$wp_query = new WP_Query(array('post_type' => 'post'));
+
+						wp_nav_menu( array( 'theme_location' => 'primary' ) );
+
+						$wp_query = $backup_query;
+
+						?>
 					</nav><!-- #site-navigation --></div>
 				</div>
 			</div>

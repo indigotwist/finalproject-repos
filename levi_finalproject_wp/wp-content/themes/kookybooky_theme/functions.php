@@ -65,18 +65,24 @@ function kookybooky_theme_setup() {
 	// Enable support for Post Thumbnails (or Featured Image).
 	add_theme_support( 'post-thumbnails' );
 
-	// Additional image size for featured image thumbnails.
-	add_image_size( 'kookybooky-featured-thumb', 220, 240, true );
-
-	//Enable theme support for featured posts.
-	add_theme_support( 'featured-content', array(
-    'filter'     => 'kookybooky_get_featured_posts',
-    'max_posts'  => 4,
-    'post_types' => array( 'post', 'page', 'recipes' ),
-	) );
+	//Set Thumbnail size.
+	set_post_thumbnail_size( 220, 240, true );
 }
 endif; // kookybooky_theme_setup
 add_action( 'after_setup_theme', 'kookybooky_theme_setup' );
+
+/**
+ * Includes Custom Post Types in Archive.
+ */
+function namespace_add_custom_types( $query ) {
+  if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+    $query->set( 'post_type', array(
+     'post', 'recipe'
+		));
+	  return $query;
+	}
+}
+add_filter( 'pre_get_posts', 'namespace_add_custom_types' );
 
 /**
  * Register widgetized area and update sidebar with default widgets.

@@ -14,7 +14,8 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
+			<div class="row">
+			<header class="page-header col-xs-offset-4 col-xs-8">
 				<h1 class="page-title">
 					<?php
 						if ( is_category() ) :
@@ -76,6 +77,7 @@ get_header(); ?>
 					endif;
 				?>
 			</header><!-- .page-header -->
+			</div><!--end .row-->
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -100,6 +102,4 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -244,7 +244,8 @@ h1,
 }
 
 .recipe-header h1,
-.home-content h1 {
+.home-content h1,
+.page-header h1 {
 	font: 700 2.5em 'Josefin Slab', serif;
 	color: #105b63;
 }
@@ -831,31 +832,31 @@ object {
 
 .header-slideshow {
 	margin-bottom: 75px;
-  position: relative;
-  overflow: hidden;
-  height: 163px;
-  z-index: 8888;
-  /*top: -240px;*/
+	position: relative;
+	overflow: hidden;
+	height: 163px;
+	z-index: 8888;
+	/*top: -240px;*/
 }
 .photo-slides {
-  background: url(../../uploads/2014/04/photoslide-image.jpg);
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 300%;
-  -webkit-animation: slideshow 90s linear infinite;
-  -moz-animation:    slideshow 90s linear infinite;
+	background: url(../../uploads/2014/04/photoslide-image.jpg);
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 300%;
+	-webkit-animation: slideshow 90s linear infinite;
+	-moz-animation:    slideshow 90s linear infinite;
 }
 
 @-webkit-keyframes slideshow {
-  0%    { left: 0; }
-  100%  { left: -200%; }
+	0%    { left: 0; }
+	100%  { left: -200%; }
 }
 
 @moz-keyframes slideshow {
-  0%    { left: 0; }
-  100%  { left: -200%; }
+	0%    { left: 0; }
+	100%  { left: -200%; }
 }
 
 /*--------------------------------------------------------------
@@ -942,6 +943,68 @@ object {
 .flexslider {
 	margin-bottom: 30px !important;
 }
+
+.related-tab-title,
+.related-content,
+.featured-tab-title,
+.featured-content {
+	background-color: #e9c172;
+	border-radius: 10px 10px 0 0;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	box-shadow: 5px 3px 10px 0 #bcbcbc;
+}
+
+.related-content,
+.featured-content {
+	border-radius: 0 10px 10px 10px;
+	margin-bottom: 30px;
+	padding-top: 25px;
+	padding-bottom: 20px;
+}
+
+.related-tab-title h1,
+.featured-tab-title h1  {
+	font: 700 1.2em 'Josefin Slab', serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: #2e2e2e;
+	text-align: center;
+	margin: 0;
+}
+
+.related-content img,
+.featured-content img {
+	width: 100%;
+}
+
+.related-content ul,
+.featured-content ul {
+	list-style: none;
+	margin-left: 0;
+
+}
+
+.related-title,
+.featured-title {
+	text-align: center;
+	padding-top: 10px;
+	font-size: .9em;
+}
+
+.entry-summary {
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
+.entry-summary p {
+	margin: 0;
+}
+
+.entry-thumb {
+	padding-right: 0;
+}
+
 /*--------------------------------------------------------------
 13.3 Footer section
 --------------------------------------------------------------*/

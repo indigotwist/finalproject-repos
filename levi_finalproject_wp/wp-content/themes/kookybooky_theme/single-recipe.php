@@ -7,6 +7,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+			<div class="row">
 			<!--Ingredients - Repeater field group-->
 			<section class="ingredients col-xs-4">
 				<header>
@@ -166,23 +167,69 @@ get_header(); ?>
 					the_field('tips'); ?>
 				</section><!--end .instructions-->
 			</article><!--end .recipe-->
+			</div><!--end .row-->
 
-			<!--Related Recipes - Post type field-->
-			<section class="related-recipes col-xs-12">
-				<header>
-					<h1>Related Recipes</h1>
-				</header>
+			<div class="row">
+			<!--Related Recipes-->
+			<section class="related-recipes-tab col-xs-12">
+				<div class="row">
+				<div class="related-tab-title col-xs-4"><h1>Related Recipes</h1></div>
+				</div>
 
-				<?php related_posts(); ?>
-			</section><!--end .related-recipes-->
+				<?php $orig_post = $post;
+				global $post;
+				$categories = get_the_category($post->ID);
 
+				if ($categories) {
+					$category_ids = array();
+
+					foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+
+					$args=array(
+						'post_type' => 'recipe',
+						'category__in' => $category_ids,
+						'post__not_in' => array($post->ID),
+						'posts_per_page'=> 4, // Number of related posts that will be shown.
+						'caller_get_posts'=>1
+					);
+
+					$related_query = new wp_query( $args );
+
+					if( $related_query->have_posts() ) {
+						echo '<div class="row"><div class="related-content col-xs-12"><ul>';
+
+						while( $related_query->have_posts() ) {
+							$related_query->the_post();?>
+
+							<li class="col-xs-3">
+								<div class="related-thumb">
+									<a href="<? the_permalink()?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_post_thumbnail(); ?></a>
+								</div>
+
+								<div class="related-title">
+									<h3><a href="<? the_permalink()?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+								</div>
+							</li>
+						<?php
+						}
+
+						echo '</ul></div></div>';
+					}
+				}
+
+				$post = $orig_post;
+				wp_reset_query(); ?>
+			</section><!--end .related-recipes-tabs-->
+			</div><!--end .row-->
+
+			<div class="row">
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template
 				if ( comments_open() || '0' != get_comments_number() ) :
 					comments_template('', true);
 				endif;
 			?>
-
+			</div><!--end .row-->
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
